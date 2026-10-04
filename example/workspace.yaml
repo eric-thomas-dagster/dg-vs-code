@@ -1,0 +1,4 @@
+load_from:
+  - python_file:
+      relative_path: dagster_example.py
+      working_directory: /Users/ericthomas/dg-vs-code/example

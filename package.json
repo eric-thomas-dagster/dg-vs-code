@@ -1,0 +1,648 @@
+{
+  "name": "dagster-power-user",
+  "displayName": "Dagster Power User",
+  "description": "Enhanced VS Code support for Dagster with AI assistant, seamless setup, Airflow migration, and powerful dev tools",
+  "version": "0.4.1",
+  "publisher": "dagster-community",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dagster-io/dagster-power-user-vscode"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization",
+    "Debuggers"
+  ],
+  "keywords": [
+    "dagster",
+    "data",
+    "pipeline",
+    "lineage",
+    "orchestration"
+  ],
+  "activationEvents": [
+    "onLanguage:python",
+    "workspaceContains:**/pyproject.toml",
+    "workspaceContains:**/setup.py",
+    "workspaceContains:**/dagster.yaml"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "ask-daggy",
+        "name": "ask-daggy",
+        "description": "Dagster AI assistant with project generation capabilities"
+      }
+    ],
+    "commands": [
+      {
+        "command": "dagster.showDependencyGraph",
+        "title": "📊 Show Dependency Graph",
+        "category": "Dagster",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "dagster.showImportAnalysis",
+        "title": "🔍 Analyze Imports",
+        "category": "Dagster",
+        "icon": "$(symbol-module)"
+      },
+      {
+        "command": "dagster.showAssetCatalog",
+        "title": "📚 Asset Catalog",
+        "category": "Dagster",
+        "icon": "$(library)"
+      },
+      {
+        "command": "dagster.showLineage",
+        "title": "Show Asset Lineage",
+        "category": "Dagster",
+        "icon": "$(git-branch)"
+      },
+      {
+        "command": "dagster.materializeAsset",
+        "title": "Materialize Current Asset",
+        "category": "Dagster",
+        "icon": "$(play)"
+      },
+      {
+        "command": "dagster.startWebserver",
+        "title": "Start Local Webserver",
+        "category": "Dagster",
+        "icon": "$(server-process)"
+      },
+      {
+        "command": "dagster.reloadCodeLocation",
+        "title": "Reload Code Location",
+        "category": "Dagster",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "dagster.showRunHistory",
+        "title": "Show Run History",
+        "category": "Dagster",
+        "icon": "$(history)"
+      },
+      {
+        "command": "dagster.quickStart",
+        "title": "Quick Start - Launch Dagster Dev",
+        "category": "Dagster",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "dagster.findDagsterInstance",
+        "title": "Find Running Dagster Instance",
+        "category": "Dagster",
+        "icon": "$(search)"
+      },
+      {
+        "command": "dagster.cloudConfigDoctor",
+        "title": "Cloud Config Doctor",
+        "category": "Dagster",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "dagster.findAssetReferences",
+        "title": "Find Asset References",
+        "category": "Dagster",
+        "icon": "$(search)"
+      },
+      {
+        "command": "dagster.goToAssetDefinition",
+        "title": "Go to Asset Definition",
+        "category": "Dagster",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "dagster.publishToDagsterPlus",
+        "title": "🚀 Publish to Dagster+",
+        "category": "Dagster",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "dagster.instantDeploy",
+        "title": "⚡ Instant Deploy to Dagster+",
+        "category": "Dagster",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "dagster.setupDagsterPlus",
+        "title": "⚡ Setup Dagster+ Deployment",
+        "category": "Dagster",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "dagster.deployBranch",
+        "title": "🌿 Deploy Current Branch",
+        "category": "Dagster",
+        "icon": "$(git-branch)"
+      },
+      {
+        "command": "dagster.manageApiToken",
+        "title": "🔐 Manage API Token",
+        "category": "Dagster",
+        "icon": "$(key)"
+      },
+      {
+        "command": "dagster.dgCheckDefs",
+        "title": "🔍 DG Check Definitions",
+        "category": "Dagster DG CLI",
+        "icon": "$(check)"
+      },
+      {
+        "command": "dagster.debugJobs",
+        "title": "🔧 Debug Jobs Query",
+        "category": "Dagster Debug",
+        "icon": "$(debug)"
+      },
+      {
+        "command": "dagster.dgCheckToml",
+        "title": "🔍 DG Check TOML",
+        "category": "Dagster DG CLI",
+        "icon": "$(check)"
+      },
+      {
+        "command": "dagster.dgCheckYaml",
+        "title": "🔍 DG Check YAML",
+        "category": "Dagster DG CLI",
+        "icon": "$(check)"
+      },
+      {
+        "command": "dagster.dgDev",
+        "title": "🚀 DG Dev Server",
+        "category": "Dagster DG CLI",
+        "icon": "$(server-environment)"
+      },
+      {
+        "command": "dagster.dgLaunch",
+        "title": "🎯 DG Launch Run",
+        "category": "Dagster DG CLI",
+        "icon": "$(play)"
+      },
+      {
+        "command": "dagster.dgListDefs",
+        "title": "📋 DG List Definitions",
+        "category": "Dagster DG CLI",
+        "icon": "$(list-unordered)"
+      },
+      {
+        "command": "dagster.dgListComponents",
+        "title": "📋 DG List Components",
+        "category": "Dagster DG CLI",
+        "icon": "$(list-unordered)"
+      },
+      {
+        "command": "dagster.dgListProjects",
+        "title": "📋 DG List Projects",
+        "category": "Dagster DG CLI",
+        "icon": "$(list-unordered)"
+      },
+      {
+        "command": "dagster.dgScaffoldAsset",
+        "title": "🏗️ DG Scaffold Asset",
+        "category": "Dagster DG CLI",
+        "icon": "$(add)"
+      },
+      {
+        "command": "dagster.dgScaffoldJob",
+        "title": "🏗️ DG Scaffold Job",
+        "category": "Dagster DG CLI",
+        "icon": "$(add)"
+      },
+      {
+        "command": "dagster.dgScaffoldSchedule",
+        "title": "🏗️ DG Scaffold Schedule",
+        "category": "Dagster DG CLI",
+        "icon": "$(add)"
+      },
+      {
+        "command": "dagster.dgScaffoldDockerfile",
+        "title": "🏗️ DG Scaffold Dockerfile",
+        "category": "Dagster DG CLI",
+        "icon": "$(add)"
+      },
+      {
+        "command": "dagster.dgScaffoldGithubActions",
+        "title": "🏗️ DG Scaffold GitHub Actions",
+        "category": "Dagster DG CLI",
+        "icon": "$(add)"
+      },
+      {
+        "command": "dagster.instantProjectSetup",
+        "title": "⚡ Instant Project Setup",
+        "category": "Dagster Setup",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "dagster.cloneSetupDeploy",
+        "title": "📥 Clone → Setup → Deploy",
+        "category": "Dagster Setup",
+        "icon": "$(repo-clone)"
+      },
+      {
+        "command": "dagster.dgLaunchAsset",
+        "title": "🎯 DG Launch Asset",
+        "category": "Dagster DG CLI",
+        "icon": "$(play)"
+      },
+      {
+        "command": "dagster.dgLaunchJob",
+        "title": "🔧 DG Launch Job",
+        "category": "Dagster DG CLI",
+        "icon": "$(play)"
+      },
+      {
+        "command": "dagster.dgLaunchPartition",
+        "title": "📅 DG Launch Partition",
+        "category": "Dagster DG CLI",
+        "icon": "$(calendar)"
+      },
+      {
+        "command": "dagster.executeJob",
+        "title": "Execute Job",
+        "category": "Dagster",
+        "icon": "$(play)"
+      },
+      {
+        "command": "dagster.findJobReferences",
+        "title": "Find Job References",
+        "category": "Dagster",
+        "icon": "$(search)"
+      },
+      {
+        "command": "dagster.goToJobDefinition",
+        "title": "Go to Job Definition",
+        "category": "Dagster",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "dagster.showJobLineage",
+        "title": "Show Job Lineage",
+        "category": "Dagster",
+        "icon": "$(git-branch)"
+      },
+      {
+        "command": "dagster.findScheduleReferences",
+        "title": "Find Schedule References",
+        "category": "Dagster",
+        "icon": "$(search)"
+      },
+      {
+        "command": "dagster.goToScheduleDefinition",
+        "title": "Go to Schedule Definition",
+        "category": "Dagster",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "dagster.dgLaunchSchedule",
+        "title": "🎯 DG Launch Schedule",
+        "category": "Dagster DG CLI",
+        "icon": "$(clock)"
+      },
+      {
+        "command": "dagster.findSensorReferences",
+        "title": "Find Sensor References",
+        "category": "Dagster",
+        "icon": "$(search)"
+      },
+      {
+        "command": "dagster.goToSensorDefinition",
+        "title": "Go to Sensor Definition",
+        "category": "Dagster",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "dagster.dgLaunchSensor",
+        "title": "🎯 DG Launch Sensor",
+        "category": "Dagster DG CLI",
+        "icon": "$(radio-tower)"
+      },
+      {
+        "command": "dagster.findOpReferences",
+        "title": "Find Op References",
+        "category": "Dagster",
+        "icon": "$(search)"
+      },
+      {
+        "command": "dagster.goToOpDefinition",
+        "title": "Go to Op Definition",
+        "category": "Dagster",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "dagster.dgLaunchOp",
+        "title": "🎯 DG Launch Op",
+        "category": "Dagster DG CLI",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "dagster.askDagster",
+        "title": "🤖 Ask Daggy",
+        "category": "Dagster AI",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "dagster.convertAirflowProject",
+        "title": "✈️ Convert Airflow Project to Dagster",
+        "category": "Dagster Migration",
+        "icon": "$(arrow-swap)"
+      },
+      {
+        "command": "dagster.switchAIModel",
+        "title": "🔄 Switch AI Model",
+        "category": "Dagster AI",
+        "icon": "$(settings-gear)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "dagster.materializeAsset",
+          "when": "resourceExtname == .py && dagster.isAssetFile",
+          "group": "dagster"
+        },
+        {
+          "command": "dagster.goToAssetDefinition",
+          "when": "resourceExtname == .py && dagster.isAssetFile",
+          "group": "dagster"
+        },
+        {
+          "command": "dagster.findAssetReferences",
+          "when": "resourceExtname == .py && dagster.isAssetFile",
+          "group": "dagster"
+        },
+        {
+          "command": "dagster.executeJob",
+          "when": "resourceExtname == .py && dagster.isJobFile",
+          "group": "dagster"
+        },
+        {
+          "command": "dagster.findJobReferences",
+          "when": "resourceExtname == .py && dagster.isJobFile",
+          "group": "dagster"
+        },
+        {
+          "command": "dagster.goToJobDefinition",
+          "when": "resourceExtname == .py && dagster.isJobFile",
+          "group": "dagster"
+        },
+        {
+          "command": "dagster.showJobLineage",
+          "when": "resourceExtname == .py && dagster.isJobFile",
+          "group": "dagster"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "dagster.showLineage",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.materializeAsset",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.startWebserver",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.reloadCodeLocation",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.showRunHistory",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.quickStart",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.findDagsterInstance",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.cloudConfigDoctor",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.findAssetReferences",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.goToAssetDefinition",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.publishToDagsterPlus",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.instantDeploy",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.setupDagsterPlus",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.deployBranch",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.manageApiToken",
+          "when": "dagster.isActivated"
+        },
+        {
+          "command": "dagster.askDagster"
+        },
+        {
+          "command": "dagster.convertAirflowProject"
+        }
+      ],
+      "keybindings": [
+        {
+          "command": "dagster.showQuickActions",
+          "key": "shift+k",
+          "when": "activeViewlet == 'dagster-panel' || focusedView == 'dagster.askDagster'"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "dagsterAssets",
+          "name": "Dagster Assets",
+          "when": "dagster.isActivated"
+        }
+      ],
+      "dagster-panel": [
+        {
+          "id": "dagster.askDagster",
+          "name": "Ask Dagster",
+          "type": "webview"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "panel": [
+        {
+          "id": "dagster-panel",
+          "title": "Ask Dagster",
+          "icon": "$(comment-discussion)"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Dagster Power User",
+      "properties": {
+        "dagster.webserverUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "URL of the local Dagster webserver"
+        },
+        "dagster.graphqlUrl": {
+          "type": "string",
+          "default": "http://localhost:3000/graphql",
+          "description": "URL of the Dagster GraphQL endpoint"
+        },
+        "dagster.pythonPath": {
+          "type": "string",
+          "description": "Path to Python executable (optional - will use workspace Python if not specified)"
+        },
+        "dagster.enableAutoCompletion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable auto-completion for Dagster assets and ops"
+        },
+        "dagster.enableLineagePreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable lineage preview in hover tooltips"
+        },
+        "dagster.activeAIProvider": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "claude",
+            "openai",
+            "claude-code",
+            "ollama",
+            "custom-gpt"
+          ],
+          "default": "auto",
+          "description": "Active AI provider for project generation (auto = use first available)",
+          "enumDescriptions": [
+            "Automatically use the first available provider",
+            "Use Claude API (requires API key)",
+            "Use OpenAI API (requires API key)",
+            "Use Claude Code extension",
+            "Use local Ollama",
+            "Use Custom GPT with Code Interpreter (best quality)"
+          ]
+        },
+        "dagster.claudeApiKey": {
+          "type": "string",
+          "description": "Claude API key for Ask Dagster project generation (optional)"
+        },
+        "dagster.openaiApiKey": {
+          "type": "string",
+          "description": "OpenAI API key for Ask Dagster project generation (optional)"
+        },
+        "dagster.openaiModel": {
+          "type": "string",
+          "enum": [
+            "gpt-4o-mini",
+            "gpt-4o",
+            "gpt-4-turbo",
+            "gpt-4"
+          ],
+          "default": "gpt-4o-mini",
+          "description": "OpenAI model to use for generation",
+          "enumDescriptions": [
+            "gpt-4o-mini (cheapest, fastest, 128k context)",
+            "gpt-4o (best quality, 128k context, latest)",
+            "gpt-4-turbo (high quality, 128k context)",
+            "gpt-4 (legacy, 8k context limit)"
+          ]
+        },
+        "dagster.enableProjectGeneration": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable AI-powered project generation in Ask Dagster"
+        },
+        "dagster.ollamaModel": {
+          "type": "string",
+          "default": "qwen2.5-coder:1.5b",
+          "description": "Ollama model to use for project generation. Lighter models: qwen2.5-coder:1.5b (1.5GB), deepseek-coder:1.3b (1.3GB). Heavier models: codellama:13b (7GB), deepseek-coder:6.7b (3.8GB)"
+        },
+        "dagster.ollamaUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Ollama server URL"
+        },
+        "dagster.customGPTAssistantId": {
+          "type": "string",
+          "default": "g-690146f641a08191be7fe1a527c971ef-ask-daggy-dagster-expert",
+          "description": "Custom GPT Assistant ID for Ask Daggy"
+        },
+        "dagster.preferOllama": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prefer Ollama over cloud APIs when available"
+        },
+        "dagster.claudeEnhancedIntegration": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable enhanced Claude Code extension integration"
+        },
+        "dagster.claudeCommandIntegration": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable command-based Claude integration"
+        },
+        "dagster.claudeExtensionIntegrated": {
+          "type": "boolean",
+          "default": false,
+          "description": "Claude extension integration status"
+        },
+        "dagster.claudeIntegrationResults": {
+          "type": "object",
+          "default": {},
+          "description": "Results from Claude integration analysis"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "@vscode/test-electron": "^2.3.8",
+    "@vscode/vsce": "^2.22.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
+    "js-yaml": "^4.1.0",
+    "node-fetch": "^3.3.2",
+    "openai": "^6.7.0"
+  }
+}

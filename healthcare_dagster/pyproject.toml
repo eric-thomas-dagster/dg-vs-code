@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "healthcare_dagster"
+version = "0.1.0"
+description = "Dagster project for healthcare data ingestion and transformation"
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+dagster = "^1.5.0"
+dagster-webserver = "^1.5.0"
+dagster-dbt = "^0.17.0"
+dagster-bigquery = "^0.17.0"
+pandas = "^1.3.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+

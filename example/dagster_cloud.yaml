@@ -1,0 +1,22 @@
+# Example dagster_cloud.yaml with some common issues for testing validation
+locations:
+  - location_name: dagster-example
+    code_source:
+      file: dagster_example.py
+    working_directory: /tmp/invalid/path
+    container_context:
+      k8s:
+        cpu_limit: 1000m
+        memory_limit: 512Mi
+    # Missing required fields for demonstration
+    
+# This should have build settings but missing them
+build:
+  registry: your-registry.com
+  # Missing repository field
+  
+# Missing some best practices
+deployment:
+  branch_deployment: True  # Should be boolean
+  environment_variables:
+    - FOO=bar  # Wrong format

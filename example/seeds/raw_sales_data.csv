@@ -1,0 +1,10 @@
+date,product,sales,region
+2024-01-01,Widget A,100,US
+2024-01-01,Widget B,150,EU
+2024-01-01,Widget A,75,US
+2024-01-02,Widget A,110,US
+2024-01-02,Widget B,160,EU
+2024-01-02,Widget C,200,US
+2024-01-03,Widget A,90,EU
+2024-01-03,Widget B,140,US
+2024-01-03,Widget C,180,EU

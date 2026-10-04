@@ -1,0 +1,9 @@
+healthcare_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      project: your-gcp-project-id
+      dataset: healthcare
+      keyfile: path/to/your/credentials.json
+
